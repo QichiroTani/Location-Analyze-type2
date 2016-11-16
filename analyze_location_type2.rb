@@ -34,9 +34,10 @@ location_data.each do |location_set|
   locaton_base_data << location
 end
 
-
+puts "読込レコード数 : #{locaton_base_data.length}件"
 
 #-------------------Make Location Traking sets--------------------------------
+puts "パース開始"
 uuid_tracking_sets = Array.new
 uuid_tracking_set = {}
 
@@ -49,7 +50,6 @@ locaton_base_data.each do |data|
   uuid_tracking_set["1stdate"] = data[2]          #現時間を入力
   uuid_tracking_set["locat_no"] = data[1].to_i    #現URL IDを入力
   uuid_tracking_set["cont_flg"] = 0               #連続閲覧状態を0でセット(連続する場合1/単体又は最初の場合0)
-
 
   #時差計算
   time_deffe = uuid_tracking_set["1stdate"] - tmp_date
@@ -69,13 +69,17 @@ locaton_base_data.each do |data|
   uuid_tracking_set = {}
 end #Location情報セット検索ループ END
 
+puts "処理終了"
+puts "処理したレコード数 : #{uuid_tracking_sets.length}件"
 
 #書き出し
 set_array = []
 CSV.open("Location_traking_sets_ver3.csv",'wb') do |csv|
   uuid_tracking_sets.each do |set|
     set_array = set.values
-    puts "#{set_array}"
+    #puts "#{set_array}"
     csv << set_array
   end
 end
+
+puts "Location_traking_sets_ver3.csvへの書出し終了"
