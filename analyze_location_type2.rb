@@ -75,7 +75,7 @@ location_base_data.each do |data|
   if tmp_uuid == uuid_tracking_set["uid"] && mins[0] <= 10
     #アクセスに任意以内の空き時間がある場合別の連続閲覧扱いにする処理
     uuid_tracking_set["cont_flg"] = 1
-    uuid_tracking_set["time_deff"] = mins[0]   #時差情報   11/17　追加
+    uuid_tracking_set["time_deff"] = time_deffe   #時差情報   11/17　追加
     counter += 1
   else
     tmp_date = uuid_tracking_set["1stdate"]       #時間更新(現時間を初見時間と判定)
